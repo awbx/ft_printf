@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_address.c                                 :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 12:18:24 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/14 12:43:18 by asabani          ###   ########.fr       */
+/*   Created: 2021/11/14 12:05:39 by asabani           #+#    #+#             */
+/*   Updated: 2021/11/16 01:48:04 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	print_address(unsigned long addr)
+t_arg	ft_get_char(const char c)
 {
-	if (addr != 0)
-	{
-		print_address(addr / 16);
-		ft_print_char(HEX_LOWERCASE[addr % 16]);
-	}
-}
+	t_arg	arg;
 
-void	ft_print_address(void *ptr)
-{
-	ft_print_char('0');
-	ft_print_char('x');
-	print_address((unsigned long)ptr);
+	arg.data = (char *)malloc(sizeof(char) * 2);
+	if (!arg.data)
+		return (arg);
+	arg.length = 1;
+	arg.data[0] = c;
+	arg.data[1] = '\0';
+	return (arg);
 }
