@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:23:42 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/16 15:19:34 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/16 21:45:33 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,7 @@
 
 void	reset_spec(t_spec *spec)
 {
-	t_flags	flags;
-
-	flags.left_justify = 0;
-	flags.zero_padded = 0;
-	flags.sign = 0;
-	flags.hash = 0;
-	flags.blank = 0;
-	spec->flags = flags;
-	spec->width = 0;
-	spec->prec = 0;
-	spec->length = 0;
 	spec->spec_type = UNKNWON_SPEC;
-}
-
-int	check_flags(t_spec *spec, const char *fmt)
-{
-	int	i;
-
-	i = 0;
-	while (fmt[i] && ft_strchr(FLAGS, fmt[i]))
-	{
-		if (fmt[i] == '-')
-			spec->flags.left_justify = 1;
-		else if (fmt[i] == '0')
-			spec->flags.zero_padded = 1;
-		else if (fmt[i] == '+')
-			spec->flags.sign = 1;
-		else if (fmt[i] == ' ')
-			spec->flags.blank = 1;
-		else if (fmt[i] == '#')
-			spec->flags.hash = 1;
-		else
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-int	check_minimum_width(t_spec *spec, const char *fmt)
-{
-	int	width;
-	int	i;
-
-	i = 0;
-	width = 0;
-	while (fmt[i] && ft_isdigit(fmt[i]))
-	{
-		width = width * 10 + fmt[i] - '0';
-		i++;
-	}
-	spec->width = width;
-	return (i);
-}
-
-int	check_maximum_width(t_spec *spec, const char *fmt)
-{
-	int	i;
-	int	length;
-
-	i = 1;
-	length = 0;
-	spec->prec = 1;
-	while (fmt[i] && ft_isdigit(fmt[i]))
-	{
-		length = length * 10 + fmt[i] - '0';
-		i++;
-	}
-	spec->length = length;
-	return (i);
 }
 
 int	check_spec_type(t_spec *spec, const char *fmt)
