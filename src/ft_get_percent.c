@@ -6,21 +6,19 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:32:20 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/16 15:41:41 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/18 12:01:57 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_arg	ft_get_percent(void)
+t_arg	ft_get_percent(t_spec *spec)
 {
 	t_arg	arg;
+	char	str[2];
 
-	arg.data = (char *)malloc(sizeof(char) * 2);
-	if (!arg.data)
-		return (arg);
-	arg.data[0] = '%';
-	arg.data[1] = '\0';
-	arg.length = 1;
+	str[0] = '%';
+	str[1] = '\0';
+	arg = ft_get_string(str, spec);
 	return (arg);
 }
