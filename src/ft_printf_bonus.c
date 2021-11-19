@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:23:39 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 19:44:13 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 00:33:41 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	ft_printf(const char *fmt, ...)
 		if (*fmt == '%')
 		{	
 			fmt += parse_spec(&spec, fmt);
-			printed_count += ft_print_to_stdout(&spec, ap, fmt++);
+			ft_print_to_stdout(&spec, ap, fmt++, &printed_count);
+			if (printed_count == -1)
+				return (-1);
 			if (spec.spec_type != UNKNWON_SPEC)
 				continue ;
 		}

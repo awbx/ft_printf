@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:49:16 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 19:28:56 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 00:22:03 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*string_justify(const char *str, \
 	char	*new_str;
 
 	new_str = (char *)malloc(sizeof(char) * (length + amount + 1));
+	if (!new_str)
+		return (NULL);
 	if (spec->flags.left_justify)
 	{
 		ft_memcpy(new_str, str, length);

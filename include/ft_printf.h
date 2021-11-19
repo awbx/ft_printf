@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 10:56:20 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 21:00:06 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 00:42:12 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define LC_HEX_BASE "0123456789abcdef"
 # define DECIMAL_BASE "0123456789"
 # define FLAGS "# +-0."
+# define STDOUT 1
 
 int		ft_printf(const char *fmt, ...);
 
@@ -73,7 +74,8 @@ void	ft_numcpy(char *str, char *base, \
 		unsigned long int number, size_t length);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
-int		ft_print_to_stdout(t_spec *spec, va_list ap, const char *fmt);
+void	ft_print_to_stdout(t_spec *spec, va_list ap, \
+		const char *fmt, int *printed_count);
 char	*choice_base(t_spec_type spec_type);
 
 // print functions prototype

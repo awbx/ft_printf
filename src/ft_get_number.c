@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:21:11 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 22:46:29 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 00:22:51 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static	t_arg	number_justify(unsigned long int number, \
 	base = choice_base(spec->spec_type);
 	arg.length = length + amount;
 	arg.data = (char *)malloc(sizeof(char) * (arg.length + 1));
+	if (!arg.data)
+		return (arg);
 	if (spec->flags.left_justify)
 	{
 		ft_numcpy(arg.data, base, number, length);

@@ -6,22 +6,24 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 19:37:23 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 22:45:44 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 00:44:03 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handle_output(t_arg arg)
+int	handle_output(t_arg arg)
 {
 	if (arg.data)
 	{
-		write(1, arg.data, arg.length);
+		write(STDOUT, arg.data, arg.length);
 		free(arg.data);
 	}
+	return (arg.length);
 }
 
-int	ft_print_to_stdout(t_spec *spec, va_list ap, const char *fmt)
+void	ft_print_to_stdout(t_spec *spec, va_list ap, \
+		const char *fmt, int *printed_count)
 {
 	t_arg	arg;
 
@@ -44,8 +46,9 @@ int	ft_print_to_stdout(t_spec *spec, va_list ap, const char *fmt)
 		arg = ft_get_percent(spec);
 	else if (spec->spec_type == UNKNWON_SPEC)
 		arg = ft_get_unknown(*fmt, spec);
-	handle_output(arg);
-	return (arg.length);
+	*printed_count += handle_output(arg);
+	if (!arg.data)
+		*printed_count = -1;
 }
 
 char	*choice_base(t_spec_type spec_type)
