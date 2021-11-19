@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 10:56:10 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/16 21:47:52 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/19 00:21:53 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ int	print_to_stdout(t_spec *spec, va_list ap, const char *fmt)
 
 	arg.data = NULL;
 	if (spec->spec_type == CHARACTER_SPEC)
-		arg = ft_get_char(va_arg(ap, int));
+		arg = ft_get_char(va_arg(ap, int), spec);
 	else if (spec->spec_type == STRING_SPEC)
-		arg = ft_get_string(va_arg(ap, char *));
+		arg = ft_get_string(va_arg(ap, char *), spec);
 	else if (spec->spec_type == POINTER_SPEC)
-		arg = ft_get_address(va_arg(ap, void *));
+		arg = ft_get_address(va_arg(ap, void *), spec);
 	else if (spec->spec_type == DECIMAL_SPEC || spec->spec_type == INTEGER_SPEC)
-		arg = ft_get_number(va_arg(ap, int));
+		arg = ft_get_number(va_arg(ap, int), spec);
 	else if (spec->spec_type == UC_HEX_SPEC)
-		arg = ft_get_number_base(va_arg(ap, unsigned int), 16, UC_HEX_BASE);
+		arg = ft_get_number_base(va_arg(ap, unsigned int), 16, spec);
 	else if (spec->spec_type == LC_HEX_SPEC)
-		arg = ft_get_number_base(va_arg(ap, unsigned int), 16, LC_HEX_BASE);
+		arg = ft_get_number_base(va_arg(ap, unsigned int), 16, spec);
 	else if (spec->spec_type == UNSIGNED_SPEC)
-		arg = ft_get_number_base(va_arg(ap, unsigned int), 10, DECIMAL_BASE);
+		arg = ft_get_number_base(va_arg(ap, unsigned int), 10, spec);
 	else if (spec->spec_type == PERCENT_SPEC)
-		arg = ft_get_percent();
+		arg = ft_get_percent(spec);
 	else if (spec->spec_type == UNKNWON_SPEC)
 		arg = ft_get_unknown(*fmt);
 	write(1, arg.data, arg.length);
