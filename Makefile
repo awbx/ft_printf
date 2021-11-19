@@ -2,43 +2,39 @@ NAME=libftprintf.a
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
 SRC=src
-CFILES=ft_get_address.c \
+INCLUDE=include
+HEADER=$(INCLUDE)/ft_printf.h
+COMMON_FILES=ft_get_address.c \
 	   ft_get_char.c \
 	   ft_get_number.c \
 	   ft_get_percent.c \
 	   ft_get_string.c \
-	   ft_global_utils.c \
+	   ft_global_utils1.c \
+	   ft_global_utils2.c \
+	   ft_global_utils3.c \
 	   ft_parser_utils.c \
-	   ft_printf.c \
 	   ft_get_unknown.c
 
-BFILES=ft_get_address.c \
-	   ft_get_char.c \
-	   ft_get_number.c \
-	   ft_get_percent.c \
-	   ft_get_string.c \
-	   ft_global_utils.c \
-	   ft_parser_utils.c \
-	   ft_printf_bonus.c \
-	   ft_get_unknown.c
-OBJ=$(CFILES:%.c=$(SRC)/%.o)
+MFILES=$(COMMON_FILES) ft_printf.c
+BFILES=$(COMMON_FILES) ft_printf_bonus.c
+MOBJ=$(MFILES:%.c=$(SRC)/%.o)
 BOBJ=$(BFILES:%.c=$(SRC)/%.o)
-HEADER=$(SRC)/ft_printf.h
+
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	ar rsc $(NAME) $(OBJ)
+$(NAME): $(MOBJ)
+	ar rsc $(NAME) $(MOBJ)
 
-bonus: $(BOBJ) $(HEADER)
+bonus: $(BOBJ)
 	ar rsc $(NAME) $(BOBJ)
 
-$(SRC)/%.o : $(SRC)/%.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+$(SRC)/%.o : $(SRC)/%.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
 
 clean:
-	rm -f $(OBJ)
-	rm -rf $(BOBJ)
+	rm -f $(MOBJ)
+	rm -f $(BOBJ)
 
 fclean: clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 10:56:20 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/19 00:22:12 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/19 21:00:06 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int		ft_isdigit(int c);
 size_t	ft_strlen(const char *str);
 size_t	ft_count_digits(unsigned long num, int base);
 void	ft_putchar(const char c);
+size_t	ft_get_minimum(int a, int b);
+int		ft_get_maximum(int a, int b);
+void	ft_numcpy(char *str, char *base, \
+		unsigned long int number, size_t length);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memset(void *b, int c, size_t len);
+int		ft_print_to_stdout(t_spec *spec, va_list ap, const char *fmt);
+char	*choice_base(t_spec_type spec_type);
 
 // print functions prototype
 typedef struct s_arg
@@ -80,8 +88,7 @@ t_arg	ft_get_address(const void *ptr, t_spec *spec);
 t_arg	ft_get_number(int number, t_spec *spec);
 t_arg	ft_get_number_base(unsigned long int number, int radix, t_spec *spec);
 t_arg	ft_get_percent(t_spec *spec);
-t_arg	ft_get_unknown(char c);
-char	*string_justify(const char *str, size_t length, int amount, \
-		int left_justify);
-size_t	get_minimum(size_t a, size_t b);
+t_arg	ft_get_unknown(char c, t_spec *spec);
+char	*string_justify(const char *str, \
+		size_t length, int amount, t_spec *spec);
 #endif

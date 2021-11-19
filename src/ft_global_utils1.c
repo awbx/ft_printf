@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:42:35 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/16 01:07:21 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/19 18:51:01 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ size_t	ft_count_digits(unsigned long num, int base)
 	size_t	digits;
 
 	digits = 0;
+	if (num == 0)
+		return (1);
 	while (num != 0)
 	{
 		digits++;
