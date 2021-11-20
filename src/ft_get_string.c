@@ -6,7 +6,7 @@
 /*   By: asabani <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:49:16 by asabani           #+#    #+#             */
-/*   Updated: 2021/11/20 00:22:03 by asabani          ###   ########.fr       */
+/*   Updated: 2021/11/20 14:13:48 by asabani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,10 @@ t_arg	ft_get_string(const char *str, t_spec *spec)
 	length = ft_strlen(str);
 	if (spec->prec)
 		length = ft_get_minimum(spec->length, length);
-	arg.length = length;
 	amount = spec->width - length;
 	if (amount < 0)
 		amount = 0;
 	arg.data = string_justify(str, length, amount, spec);
-	arg.length += amount;
+	arg.length = length + amount;
 	return (arg);
 }
